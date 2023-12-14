@@ -15,6 +15,9 @@ namespace TabberCapture.Schemas
 {
     public class 환경설정
     {
+        public delegate void 모델변경(모델구분 모델코드);
+        public event 모델변경 모델변경알림;
+
         [JsonIgnore]
         public const String 프로젝트번호 = "23-1213-005";
         [Description("프로그램 동작구분"), JsonProperty("RunType")]
@@ -27,6 +30,8 @@ namespace TabberCapture.Schemas
         public String 사진저장 { get; set; } = @"C:\Tabber\SaveImage";
         [JsonIgnore]
         private String 저장파일 { get { return Path.Combine(this.기본경로, "Config.json"); } }
+        [JsonProperty("CurrentModel")]
+        public 모델구분 선택모델 { get; set; } = 모델구분.TabberLine1;
         [JsonIgnore, Description("이미지 저장 디스크 사용율")]
         public Int32 저장비율 { get { return 100 - this.SaveImageDriveFreeSpace(); } }
 
@@ -93,6 +98,19 @@ namespace TabberCapture.Schemas
                 //Global.오류로그(로그영역.GetString(), "환경설정 저장", "환경설정 저장에 실패하였습니다.", true);
             }
         }
+        public void 모델변경요청(Int32 모델번호)
+        {
+            this.모델변경요청((모델구분)모델번호);
+        }
+
+        public void 모델변경요청(모델구분 모델구분)
+        {
+            if (this.선택모델 == 모델구분) return;
+            this.선택모델 = 모델구분;
+            this.모델변경알림?.Invoke(this.선택모델);
+        }
+
+
         #region 드라이브 용량계산
         private DriveInfo ImageSaveDrive = null;
         private DriveInfo GetSaveImageDrive()

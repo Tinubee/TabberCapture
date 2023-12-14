@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace TabberCapture.UI.Controls
 {
-    public partial class DeviceSettings : DevExpress.XtraEditors.XtraUserControl
+    public partial class DeviceSettings : XtraUserControl
     {
         public DeviceSettings()
         {

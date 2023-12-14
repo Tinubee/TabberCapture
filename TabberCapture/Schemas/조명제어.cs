@@ -26,6 +26,9 @@ namespace TabberCapture.Schemas
         CH03 = 3,
         CH04 = 4,
         CH05 = 5,
+        CH06 = 6,
+        CH07 = 7,
+        CH08 = 8,
     }
 
     public abstract class 조명컨트롤러
@@ -34,8 +37,8 @@ namespace TabberCapture.Schemas
         public abstract 조명포트 포트 { get; set; }
         public abstract Int32 통신속도 { get; set; }
         public abstract Int32 최대밝기 { get; }
-        public abstract String STX { get; set; }
-        public abstract String ETX { get; set; }
+        public abstract byte[] Temp { get; set; }
+
         public SerialPort 통신포트;
 
         public virtual void Init()
@@ -78,14 +81,14 @@ namespace TabberCapture.Schemas
         }
 
         public virtual Int32 밝기변환(Int32 밝기) => Convert.ToInt32(Math.Round((Double)this.최대밝기 * 밝기 / 100));
-        public abstract Boolean Set(조명정보 정보);
+        //public abstract Boolean Set(조명정보 정보);
         public abstract Boolean Save(조명정보 정보);
         public abstract Boolean TurnOn(조명정보 정보);
         public abstract Boolean TurnOff(조명정보 정보);
 
         public virtual void ErrorReceived(object sender, SerialErrorReceivedEventArgs e)
         {
-            Debug.WriteLine($"ErrorReceived 포트={this.포트}, {e.EventType.ToString()}", this.로그영역);
+            Debug.WriteLine($"ErrorReceived 포트={this.포트}, {e.EventType}", this.로그영역);
             Debug.WriteLine(e.ToString());
         }
         public virtual void DataReceived(object sender, SerialDataReceivedEventArgs e)
@@ -95,7 +98,7 @@ namespace TabberCapture.Schemas
             Debug.WriteLine($"DataReceived 포트={this.포트}, {data}", this.로그영역);
         }
 
-        public virtual Boolean SendCommand(String 구분, String Command)
+        public virtual Boolean SendCommand(String 구분, Boolean OnOff)
         {
             if (!IsOpen())
             {
@@ -104,7 +107,30 @@ namespace TabberCapture.Schemas
             }
             try
             {
-                통신포트.Write($"{STX}{Command}{ETX}");
+                Temp[0] = 0x3A;
+                Temp[1] = 0x3A;
+                Temp[2] = 0x00;
+                if (OnOff)
+                {
+                    Temp[3] = 0xFF;
+                    Temp[4] = 0xFF;
+                    Temp[5] = 0xFF;
+                    Temp[6] = 0xFF;
+                }
+                else
+                {
+                    Temp[3] = 0x00;
+                    Temp[4] = 0x00;
+                    Temp[5] = 0x00;
+                    Temp[6] = 0x00;
+                }
+               
+                int checksum = Temp[2] ^ Temp[3] ^ Temp[4] ^ Temp[5] ^ Temp[6];
+                Temp[7] = (byte)checksum;
+                Temp[8] = 0xEE;
+                Temp[9] = 0xEE;
+
+                통신포트.Write(Temp, 0, 10);
                 //Debug.WriteLine($"{STX}{Command}{ETX}".Trim(), 구분);
                 return true;
             }
@@ -116,42 +142,37 @@ namespace TabberCapture.Schemas
         }
     }
 
-    // LCP FA-LCP24
-    public class FALCP24 : 조명컨트롤러
+    public class PD300 : 조명컨트롤러
     {
-        public override String 로그영역 { get; set; } = nameof(FALCP24);
+        public override String 로그영역 { get; set; } = nameof(PD300);
         public override 조명포트 포트 { get; set; } = 조명포트.COM3;
         public override Int32 통신속도 { get; set; } = 9600;
-        public override Int32 최대밝기 { get; } = 1023;
-        public override String STX { get; set; } = $"{Convert.ToChar(2)}";
-        public override String ETX { get; set; } = $"{Convert.ToChar(3)}";
-        public override Boolean Set(조명정보 정보) => SendCommand($"{정보.카메라} Set", $"{(Int32)정보.채널 - 1}w{this.밝기변환(정보.밝기).ToString("d4")}");
+        public override Int32 최대밝기 { get; } = 255;
+        public override byte[] Temp { get; set; } = new byte[10];
+        // public override Boolean Set(조명정보 정보) => SendCommand($"{정보.카메라} Set", $"{(Int32)정보.채널 - 1}w{this.밝기변환(정보.밝기).ToString("d4")}");
         public override Boolean Save(조명정보 정보) => false; // 커맨드가 있는지 모름
-        public override Boolean TurnOn(조명정보 정보) => SendCommand($"{정보.카메라} On", $"{(Int32)정보.채널 - 1}o");//{this.밝기변환(정보.밝기).ToString("d4")}
-        public override Boolean TurnOff(조명정보 정보) => SendCommand($"{정보.카메라} Off", $"{(Int32)정보.채널 - 1}f");//0000
+        public override Boolean TurnOn(조명정보 정보) => SendCommand($"{정보.컨트롤러} On", true);
+        public override Boolean TurnOff(조명정보 정보) => SendCommand($"{정보.컨트롤러} Off", false);
     }
 
     public class 조명정보
     {
-        [JsonProperty("Camera"), Translation("Camera", "카메라", "Fotoaparát")]
-        public 카메라구분 카메라 { get; set; } = 카메라구분.None;
-        [JsonProperty("Port"), Translation("Port", "포트", "Port")]
+        [JsonProperty("Port"), Translation("Port", "포트")]
         public 조명포트 포트 { get; set; } = 조명포트.None;
-        [JsonProperty("Channel"), Translation("Channel", "채널", "Channel")]
+        [JsonProperty("Channel"), Translation("Channel", "채널")]
         public 조명채널 채널 { get; set; } = 조명채널.CH01;
-        [JsonProperty("Brightness"), Translation("Brightness", "밝기", "Jas")]
+        [JsonProperty("Brightness"), Translation("Brightness", "밝기")]
         public Int32 밝기 { get; set; } = 100;
-        [JsonProperty("Description"), Translation("Description", "설명", "Popis")]
+        [JsonProperty("Description"), Translation("Description", "설명")]
         public String 설명 { get; set; } = String.Empty;
-        [JsonIgnore, Translation("TurnOn", "켜짐", "Zapnúť")]
+        [JsonIgnore, Translation("TurnOn", "켜짐")]
         public Boolean 켜짐 { get; set; } = false;
         [JsonIgnore]
         public 조명컨트롤러 컨트롤러;
 
         public 조명정보() { }
-        public 조명정보(카메라구분 카메라, 조명컨트롤러 컨트롤)
+        public 조명정보(조명컨트롤러 컨트롤)
         {
-            this.카메라 = 카메라;
             this.컨트롤러 = 컨트롤;
             this.포트 = 컨트롤.포트;
         }
@@ -159,7 +180,7 @@ namespace TabberCapture.Schemas
         //public Boolean Get() { return this.컨트롤러.Get(this); }
         public Boolean Set()
         {
-            this.켜짐 = this.컨트롤러.Set(this);
+            //this.켜짐 = this.컨트롤러.Set(this);
             return this.켜짐;
         }
         public Boolean TurnOn()
@@ -194,37 +215,33 @@ namespace TabberCapture.Schemas
         [JsonIgnore]
         private string 저장파일 { get { return Path.Combine(Global.환경설정.기본경로, "Lights.json"); } }
         [JsonIgnore]
-        private FALCP24 컨트롤러1;
+        private PD300 컨트롤러1;
 
         [JsonIgnore]
         public Boolean 정상여부 { get { return this.컨트롤러1.IsOpen(); } }
 
         public void Init()
         {
-            this.컨트롤러1 = new FALCP24() { 포트 = 조명포트.COM6 };
+            this.컨트롤러1 = new PD300() { 포트 = 조명포트.COM6 };
             this.컨트롤러1.Init();
 
-            this.Add(new 조명정보(카메라구분.Cam01, 컨트롤러1) { 채널 = 조명채널.CH01, 밝기 = 100 });
-            this.Add(new 조명정보(카메라구분.Cam02, 컨트롤러1) { 채널 = 조명채널.CH02, 밝기 = 100 });
-            this.Add(new 조명정보(카메라구분.Cam03, 컨트롤러1) { 채널 = 조명채널.CH03, 밝기 = 100 });
-            this.Add(new 조명정보(카메라구분.Cam04, 컨트롤러1) { 채널 = 조명채널.CH04, 밝기 = 100 });
-            this.Add(new 조명정보(카메라구분.Cam05, 컨트롤러1) { 채널 = 조명채널.CH05, 밝기 = 100 });
+            this.Add(new 조명정보(컨트롤러1) { 채널 = 조명채널.CH01, 밝기 = 100 });
 
             this.Load();
             this.Open();
             this.Set();
         }
 
-        public 조명정보 GetItem(카메라구분 카메라)
+        //public 조명정보 GetItem(카메라구분 카메라)
+        //{
+        //    foreach (조명정보 조명 in this)
+        //        if (조명.카메라 == 카메라) return 조명;
+        //    return null;
+        //}
+        public 조명정보 GetItem(조명포트 포트, 조명채널 채널)
         {
             foreach (조명정보 조명 in this)
-                if (조명.카메라 == 카메라) return 조명;
-            return null;
-        }
-        public 조명정보 GetItem(카메라구분 카메라, 조명포트 포트, 조명채널 채널)
-        {
-            foreach (조명정보 조명 in this)
-                if (조명.카메라 == 카메라 && 조명.포트 == 포트 && 조명.채널 == 채널) return 조명;
+                if (조명.포트 == 포트 && 조명.채널 == 채널) return 조명;
             return null;
         }
 
@@ -236,7 +253,7 @@ namespace TabberCapture.Schemas
                 List<조명정보> 자료 = JsonConvert.DeserializeObject<List<조명정보>>(File.ReadAllText(this.저장파일), Utils.JsonSetting());
                 foreach (조명정보 정보 in 자료)
                 {
-                    조명정보 조명 = this.GetItem(정보.카메라, 정보.포트, 정보.채널);
+                    조명정보 조명 = this.GetItem(정보.포트, 정보.채널);
                     if (조명 == null) continue;
                     조명.Set(정보);
                 }
@@ -285,20 +302,11 @@ namespace TabberCapture.Schemas
             });
         }
 
-        public void Set(카메라구분 카메라)
-        {
-            foreach (조명정보 조명 in this)
-            {
-                if (조명.카메라 == 카메라)
-                    조명.Set();
-            }
-        }
-
-        public void Set(카메라구분 카메라, 조명포트 포트, Int32 밝기)
+        public void Set(조명포트 포트, Int32 밝기)
         {
             foreach (조명정보 정보 in this)
             {
-                if (정보.카메라 == 카메라 && 정보.포트 == 포트)
+                if (정보.포트 == 포트)
                 {
                     정보.밝기 = 밝기;
                     정보.Set();
@@ -310,26 +318,6 @@ namespace TabberCapture.Schemas
         {
             foreach (조명정보 정보 in this)
                 정보.TurnOn();
-        }
-
-        public void TurnOnOff(카메라구분 카메라, Boolean IsOn)
-        {
-            if (IsOn) this.TurnOn(카메라);
-            else this.TurnOff(카메라);
-        }
-
-        public void TurnOn(카메라구분 카메라)
-        {
-            foreach (조명정보 정보 in this)
-                if (정보.카메라 == 카메라)
-                    정보.TurnOn();
-        }
-
-        public void TurnOff(카메라구분 카메라)
-        {
-            foreach (조명정보 정보 in this)
-                if (정보.카메라 == 카메라)
-                    정보.TurnOff();
         }
 
         public void TurnOff()

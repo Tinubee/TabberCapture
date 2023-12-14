@@ -203,6 +203,10 @@ namespace TabberCapture.Schemas
 
     public class BaslerGigE : 카메라장치
     {
+        [Description("이미지 그랩 이벤트")]
+        public delegate void AcquisitionFinished(카메라구분 구분, AcquisitionData Data);
+
+        public event AcquisitionFinished AcquisitionFinishedEvent;
         [JsonIgnore]
         private Camera Camera = null;
         [JsonIgnore]
@@ -242,8 +246,8 @@ namespace TabberCapture.Schemas
 
         public override Boolean Close()
         {
-            this.Camera.Close();
-            this.Camera.Dispose();
+            this.Camera?.Close();
+            this.Camera?.Dispose();
             return true;
         }
 
@@ -258,16 +262,19 @@ namespace TabberCapture.Schemas
 
         private void onImageGrabbed(object sender, ImageGrabbedEventArgs e)
         {
+            AcquisitionData acq = new AcquisitionData(this.구분);
             try
             {
                 if (!e.GrabResult.IsValid) return;
 
                 IGrabResult ImageResult = e.GrabResult;
+
                 Bitmap Image = new Bitmap(ImageResult.Width, ImageResult.Height, PixelFormat.Format32bppRgb);
                 BitmapData Imagedata = Image.LockBits(new Rectangle(0, 0, Image.Width, Image.Height), ImageLockMode.ReadWrite, Image.PixelFormat);
                 IntPtr ptrbmp = Imagedata.Scan0;
                 Mat image = new Mat(Image.Height, Image.Width, MatType.CV_8U, ptrbmp);
                 //Image.UnlockBits(Imagedata);
+                acq.SetImage(image);
                 Global.그랩제어.그랩완료(this.구분, image);
                 GC.Collect();
                 //this.Stop();
@@ -276,6 +283,38 @@ namespace TabberCapture.Schemas
             {
                 Debug.WriteLine(ex);
                 return;
+            }
+            this.AcquisitionFinishedEvent?.Invoke(this.구분, acq);
+        }
+
+        public class AcquisitionData : IDisposable
+        {
+            public 카메라구분 카메라 { get; set; } = 카메라구분.None;
+            public Bitmap BmpImage { get; set; } = null;
+            public Mat MatImage { get; set; } = null;
+
+            public AcquisitionData(카메라구분 Cam)
+            {
+                this.카메라 = Cam;
+            }
+            public AcquisitionData(카메라구분 Cam, Mat Image)
+            {
+                this.카메라 = Cam;
+                this.MatImage = Image;
+            }
+
+            public void SetImage(Mat image)
+            {
+                this.MatImage?.Dispose();
+                this.MatImage = image;
+                this.BmpImage?.Dispose();
+                this.BmpImage = OpenCvSharp.Extensions.BitmapConverter.ToBitmap(this.MatImage);
+            }
+
+            public void Dispose()
+            {
+                this.MatImage?.Dispose();
+                this.MatImage = null;
             }
         }
     }
