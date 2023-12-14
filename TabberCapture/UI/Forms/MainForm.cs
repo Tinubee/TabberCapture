@@ -58,10 +58,9 @@ namespace TabberCapture
         private void Init()
         {
             this.SetLocalization();
-            ////this.e결과뷰어.Init(UI.Controls.ResultView.동작구분.검사);
-            //this.e검사설정.Init();
             //this.e변수설정.Init();
             //this.e장치설정.Init();
+            this.e결과뷰어.Init();
             this.e상태뷰어.Init();
 
             this.TabFormControl.AllowMoveTabs = false;

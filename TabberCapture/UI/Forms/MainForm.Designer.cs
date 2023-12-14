@@ -45,6 +45,7 @@
             this.p환경설정 = new DevExpress.XtraBars.TabFormPage();
             this.tabFormContentContainer2 = new DevExpress.XtraBars.TabFormContentContainer();
             this.deviceSettings1 = new TabberCapture.UI.Controls.DeviceSettings();
+            this.e결과뷰어 = new TabberCapture.UI.Controls.CamViewers();
             ((System.ComponentModel.ISupportInitialize)(this.tabFormControl1)).BeginInit();
             this.tabFormContentContainer1.SuspendLayout();
             this.tabFormContentContainer2.SuspendLayout();
@@ -100,6 +101,7 @@
             // 
             // tabFormContentContainer1
             // 
+            this.tabFormContentContainer1.Controls.Add(this.e결과뷰어);
             this.tabFormContentContainer1.Controls.Add(this.e상태뷰어);
             this.tabFormContentContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabFormContentContainer1.Location = new System.Drawing.Point(0, 31);
@@ -149,6 +151,18 @@
             this.deviceSettings1.Size = new System.Drawing.Size(1918, 1068);
             this.deviceSettings1.TabIndex = 0;
             // 
+            // e결과뷰어
+            // 
+            this.e결과뷰어.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.e결과뷰어.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.e결과뷰어.Appearance.Options.UseBackColor = true;
+            this.e결과뷰어.Appearance.Options.UseForeColor = true;
+            this.e결과뷰어.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.e결과뷰어.Location = new System.Drawing.Point(0, 105);
+            this.e결과뷰어.Name = "e결과뷰어";
+            this.e결과뷰어.Size = new System.Drawing.Size(1918, 963);
+            this.e결과뷰어.TabIndex = 1;
+            // 
             // MainForm
             // 
             this.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
@@ -185,6 +199,7 @@
         private DevExpress.XtraBars.TabFormContentContainer tabFormContentContainer2;
         private UI.Controls.DeviceSettings deviceSettings1;
         private UI.Controls.State e상태뷰어;
+        private UI.Controls.CamViewers e결과뷰어;
     }
 }
 

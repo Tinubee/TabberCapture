@@ -159,6 +159,8 @@ namespace TabberCapture.Schemas
         public virtual String 설명 { get; set; } = String.Empty;
         [JsonProperty("IpAddress"), Description("IP")]
         public virtual String 주소 { get; set; } = String.Empty;
+        [JsonProperty("Delaytime"), Description("Delaytime")]
+        public virtual Double 지연시간 { get; set; } = 1000;
         [JsonProperty("Timeout"), Description("Timeout")]
         public virtual Double 시간 { get; set; } = 1000;
         [JsonProperty("Exposure"), Description("Exposure")]
@@ -184,6 +186,7 @@ namespace TabberCapture.Schemas
             this.코드 = 장치.코드;
             this.설명 = 장치.설명;
             this.시간 = 장치.시간;
+            this.지연시간 = 장치.지연시간;
             this.노출 = 장치.노출;
             this.대비 = 장치.대비;
             this.밝기 = 장치.밝기;
