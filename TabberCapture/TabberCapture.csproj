@@ -76,6 +76,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Accessibility" />
+    <Reference Include="Automation.BDaq4, Version=4.0.0.0, Culture=neutral, PublicKeyToken=463f5928d60183a0, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Windows\assembly\GAC_MSIL\Automation.BDaq4\4.0.0.0__463f5928d60183a0\Automation.BDaq4.dll</HintPath>
+    </Reference>
     <Reference Include="Basler.Pylon, Version=1.2.0.0, Culture=neutral, PublicKeyToken=e389355f398382ab, processorArchitecture=x86" />
     <Reference Include="DevExpress.BonusSkins.v22.2" />
     <Reference Include="DevExpress.Data.Desktop.v22.2" />
@@ -182,6 +186,12 @@
     <Compile Include="UI\Controls\DeviceSettings.Designer.cs">
       <DependentUpon>DeviceSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Controls\IOControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\IOControl.Designer.cs">
+      <DependentUpon>IOControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Controls\Logo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -226,6 +236,9 @@
     <EmbeddedResource Include="UI\Controls\DeviceSettings.resx">
       <DependentUpon>DeviceSettings.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\IOControl.resx">
+      <DependentUpon>IOControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Controls\State.resx">
       <DependentUpon>State.cs</DependentUpon>
     </EmbeddedResource>
@@ -250,6 +263,7 @@
     <None Include="Properties\DataSources\TabberCapture.Schemas.조명제어.datasource" />
     <None Include="Properties\DataSources\TabberCapture.Schemas.카메라장치.datasource" />
     <None Include="Properties\DataSources\TabberCapture.Schemas.환경설정.datasource" />
+    <None Include="Properties\DataSources\TabberCapture.UI.Controls.IOControl.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

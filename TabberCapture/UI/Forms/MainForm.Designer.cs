@@ -41,14 +41,24 @@
             this.skinPaletteDropDownButtonItem1 = new DevExpress.XtraBars.SkinPaletteDropDownButtonItem();
             this.p메인화면 = new DevExpress.XtraBars.TabFormPage();
             this.tabFormContentContainer1 = new DevExpress.XtraBars.TabFormContentContainer();
+            this.e결과뷰어 = new TabberCapture.UI.Controls.CamViewers();
             this.e상태뷰어 = new TabberCapture.UI.Controls.State();
             this.p환경설정 = new DevExpress.XtraBars.TabFormPage();
             this.tabFormContentContainer2 = new DevExpress.XtraBars.TabFormContentContainer();
-            this.deviceSettings1 = new TabberCapture.UI.Controls.DeviceSettings();
-            this.e결과뷰어 = new TabberCapture.UI.Controls.CamViewers();
+            this.e환경설정 = new TabberCapture.UI.Controls.DeviceSettings();
+            this.tabFormContentContainer3 = new DevExpress.XtraBars.TabFormContentContainer();
+            this.p입출자료 = new DevExpress.XtraBars.TabFormPage();
+            this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.e입력신호 = new TabberCapture.UI.Controls.IOControl();
             ((System.ComponentModel.ISupportInitialize)(this.tabFormControl1)).BeginInit();
             this.tabFormContentContainer1.SuspendLayout();
             this.tabFormContentContainer2.SuspendLayout();
+            this.tabFormContentContainer3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel1)).BeginInit();
+            this.splitContainerControl1.Panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel2)).BeginInit();
+            this.splitContainerControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabFormControl1
@@ -63,7 +73,8 @@
             this.tabFormControl1.Name = "tabFormControl1";
             this.tabFormControl1.Pages.Add(this.p메인화면);
             this.tabFormControl1.Pages.Add(this.p환경설정);
-            this.tabFormControl1.SelectedPage = this.p메인화면;
+            this.tabFormControl1.Pages.Add(this.p입출자료);
+            this.tabFormControl1.SelectedPage = this.p입출자료;
             this.tabFormControl1.ShowAddPageButton = false;
             this.tabFormControl1.ShowTabCloseButtons = false;
             this.tabFormControl1.ShowTabsInTitleBar = DevExpress.XtraBars.ShowTabsInTitleBar.True;
@@ -109,6 +120,19 @@
             this.tabFormContentContainer1.Size = new System.Drawing.Size(1918, 1068);
             this.tabFormContentContainer1.TabIndex = 1;
             // 
+            // e결과뷰어
+            // 
+            this.e결과뷰어.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.e결과뷰어.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.e결과뷰어.Appearance.Options.UseBackColor = true;
+            this.e결과뷰어.Appearance.Options.UseForeColor = true;
+            this.e결과뷰어.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.e결과뷰어.Location = new System.Drawing.Point(0, 105);
+            this.e결과뷰어.Margin = new System.Windows.Forms.Padding(0);
+            this.e결과뷰어.Name = "e결과뷰어";
+            this.e결과뷰어.Size = new System.Drawing.Size(1918, 963);
+            this.e결과뷰어.TabIndex = 1;
+            // 
             // e상태뷰어
             // 
             this.e상태뷰어.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
@@ -130,38 +154,72 @@
             // 
             // tabFormContentContainer2
             // 
-            this.tabFormContentContainer2.Controls.Add(this.deviceSettings1);
+            this.tabFormContentContainer2.Controls.Add(this.e환경설정);
             this.tabFormContentContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabFormContentContainer2.Location = new System.Drawing.Point(0, 31);
             this.tabFormContentContainer2.Name = "tabFormContentContainer2";
             this.tabFormContentContainer2.Size = new System.Drawing.Size(1918, 1068);
             this.tabFormContentContainer2.TabIndex = 2;
             // 
-            // deviceSettings1
+            // e환경설정
             // 
-            this.deviceSettings1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.deviceSettings1.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deviceSettings1.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.deviceSettings1.Appearance.Options.UseBackColor = true;
-            this.deviceSettings1.Appearance.Options.UseFont = true;
-            this.deviceSettings1.Appearance.Options.UseForeColor = true;
-            this.deviceSettings1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.deviceSettings1.Location = new System.Drawing.Point(0, 0);
-            this.deviceSettings1.Name = "deviceSettings1";
-            this.deviceSettings1.Size = new System.Drawing.Size(1918, 1068);
-            this.deviceSettings1.TabIndex = 0;
+            this.e환경설정.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.e환경설정.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.e환경설정.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.e환경설정.Appearance.Options.UseBackColor = true;
+            this.e환경설정.Appearance.Options.UseFont = true;
+            this.e환경설정.Appearance.Options.UseForeColor = true;
+            this.e환경설정.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.e환경설정.Location = new System.Drawing.Point(0, 0);
+            this.e환경설정.Name = "e환경설정";
+            this.e환경설정.Size = new System.Drawing.Size(1918, 1068);
+            this.e환경설정.TabIndex = 0;
             // 
-            // e결과뷰어
+            // tabFormContentContainer3
             // 
-            this.e결과뷰어.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.e결과뷰어.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.e결과뷰어.Appearance.Options.UseBackColor = true;
-            this.e결과뷰어.Appearance.Options.UseForeColor = true;
-            this.e결과뷰어.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.e결과뷰어.Location = new System.Drawing.Point(0, 105);
-            this.e결과뷰어.Name = "e결과뷰어";
-            this.e결과뷰어.Size = new System.Drawing.Size(1918, 963);
-            this.e결과뷰어.TabIndex = 1;
+            this.tabFormContentContainer3.Controls.Add(this.splitContainerControl1);
+            this.tabFormContentContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabFormContentContainer3.Location = new System.Drawing.Point(0, 31);
+            this.tabFormContentContainer3.Name = "tabFormContentContainer3";
+            this.tabFormContentContainer3.Size = new System.Drawing.Size(1918, 1068);
+            this.tabFormContentContainer3.TabIndex = 3;
+            // 
+            // p입출자료
+            // 
+            this.p입출자료.ContentContainer = this.tabFormContentContainer3;
+            this.p입출자료.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("p입출자료.ImageOptions.SvgImage")));
+            this.p입출자료.Name = "p입출자료";
+            this.p입출자료.Text = "I/O";
+            // 
+            // splitContainerControl1
+            // 
+            this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerControl1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerControl1.Name = "splitContainerControl1";
+            // 
+            // splitContainerControl1.Panel1
+            // 
+            this.splitContainerControl1.Panel1.Controls.Add(this.e입력신호);
+            this.splitContainerControl1.Panel1.Text = "Panel1";
+            // 
+            // splitContainerControl1.Panel2
+            // 
+            this.splitContainerControl1.Panel2.Text = "Panel2";
+            this.splitContainerControl1.Size = new System.Drawing.Size(1918, 1068);
+            this.splitContainerControl1.SplitterPosition = 930;
+            this.splitContainerControl1.TabIndex = 0;
+            // 
+            // e입력신호
+            // 
+            this.e입력신호.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.e입력신호.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.e입력신호.Appearance.Options.UseBackColor = true;
+            this.e입력신호.Appearance.Options.UseForeColor = true;
+            this.e입력신호.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.e입력신호.Location = new System.Drawing.Point(0, 0);
+            this.e입력신호.Name = "e입력신호";
+            this.e입력신호.Size = new System.Drawing.Size(930, 1068);
+            this.e입력신호.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -173,7 +231,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1918, 1099);
-            this.Controls.Add(this.tabFormContentContainer1);
+            this.Controls.Add(this.tabFormContentContainer3);
             this.Controls.Add(this.tabFormControl1);
             this.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -183,6 +241,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.tabFormControl1)).EndInit();
             this.tabFormContentContainer1.ResumeLayout(false);
             this.tabFormContentContainer2.ResumeLayout(false);
+            this.tabFormContentContainer3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel1)).EndInit();
+            this.splitContainerControl1.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
+            this.splitContainerControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -197,9 +261,13 @@
         private DevExpress.XtraBars.SkinPaletteDropDownButtonItem skinPaletteDropDownButtonItem1;
         private DevExpress.XtraBars.TabFormPage p환경설정;
         private DevExpress.XtraBars.TabFormContentContainer tabFormContentContainer2;
-        private UI.Controls.DeviceSettings deviceSettings1;
+        private UI.Controls.DeviceSettings e환경설정;
         private UI.Controls.State e상태뷰어;
         private UI.Controls.CamViewers e결과뷰어;
+        private DevExpress.XtraBars.TabFormPage p입출자료;
+        private DevExpress.XtraBars.TabFormContentContainer tabFormContentContainer3;
+        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
+        private UI.Controls.IOControl e입력신호;
     }
 }
 

@@ -33,12 +33,8 @@
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.b저장 = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
-            this.Bind카메라설정 = new System.Windows.Forms.BindingSource(this.components);
-            this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
-            this.GridControl2 = new MvUtils.CustomGrid();
-            this.GridView2 = new MvUtils.CustomView();
-            this.Bind조명설정 = new System.Windows.Forms.BindingSource(this.components);
             this.GridControl1 = new MvUtils.CustomGrid();
+            this.Bind카메라설정 = new System.Windows.Forms.BindingSource(this.components);
             this.GridView1 = new MvUtils.CustomView();
             this.col구분 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col코드 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -50,18 +46,27 @@
             this.col밝기 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col대비 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col상태 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
+            this.GridControl2 = new MvUtils.CustomGrid();
+            this.GridView2 = new MvUtils.CustomView();
+            this.Bind조명설정 = new System.Windows.Forms.BindingSource(this.components);
+            this.col포트 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col채널 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col밝기1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col설명1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col켜짐 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Bind카메라설정)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Bind조명설정)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -98,64 +103,6 @@
             this.groupControl2.TabIndex = 10;
             this.groupControl2.Text = "Cameras";
             // 
-            // Bind카메라설정
-            // 
-            this.Bind카메라설정.DataSource = typeof(TabberCapture.Schemas.카메라장치);
-            // 
-            // groupControl3
-            // 
-            this.groupControl3.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.groupControl3.Appearance.Options.UseBackColor = true;
-            this.groupControl3.Controls.Add(this.GridControl2);
-            this.groupControl3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupControl3.Location = new System.Drawing.Point(0, 440);
-            this.groupControl3.Name = "groupControl3";
-            this.groupControl3.Size = new System.Drawing.Size(943, 358);
-            this.groupControl3.TabIndex = 11;
-            this.groupControl3.Text = "Lights";
-            // 
-            // GridControl2
-            // 
-            this.GridControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GridControl2.Location = new System.Drawing.Point(2, 23);
-            this.GridControl2.MainView = this.GridView2;
-            this.GridControl2.Name = "GridControl2";
-            this.GridControl2.Size = new System.Drawing.Size(939, 333);
-            this.GridControl2.TabIndex = 1;
-            this.GridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.GridView2});
-            // 
-            // GridView2
-            // 
-            this.GridView2.AllowColumnMenu = true;
-            this.GridView2.AllowCustomMenu = true;
-            this.GridView2.AllowExport = true;
-            this.GridView2.AllowPrint = true;
-            this.GridView2.AllowSettingsMenu = false;
-            this.GridView2.AllowSummaryMenu = true;
-            this.GridView2.ApplyFocusedRow = true;
-            this.GridView2.Caption = "";
-            this.GridView2.FooterPanelHeight = 21;
-            this.GridView2.GridControl = this.GridControl2;
-            this.GridView2.GroupRowHeight = 21;
-            this.GridView2.IndicatorWidth = 44;
-            this.GridView2.MinColumnRowHeight = 24;
-            this.GridView2.MinRowHeight = 18;
-            this.GridView2.Name = "GridView2";
-            this.GridView2.OptionsBehavior.Editable = false;
-            this.GridView2.OptionsBehavior.EditorShowMode = DevExpress.Utils.EditorShowMode.Click;
-            this.GridView2.OptionsFilter.UseNewCustomFilterDialog = true;
-            this.GridView2.OptionsNavigation.EnterMoveNextColumn = true;
-            this.GridView2.OptionsPrint.AutoWidth = false;
-            this.GridView2.OptionsPrint.UsePrintStyles = false;
-            this.GridView2.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.False;
-            this.GridView2.OptionsView.ShowGroupPanel = false;
-            this.GridView2.RowHeight = 20;
-            // 
-            // Bind조명설정
-            // 
-            this.Bind조명설정.DataSource = typeof(TabberCapture.Schemas.조명제어);
-            // 
             // GridControl1
             // 
             this.GridControl1.DataSource = this.Bind카메라설정;
@@ -167,6 +114,10 @@
             this.GridControl1.TabIndex = 0;
             this.GridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridView1});
+            // 
+            // Bind카메라설정
+            // 
+            this.Bind카메라설정.DataSource = typeof(TabberCapture.Schemas.카메라장치);
             // 
             // GridView1
             // 
@@ -296,6 +247,112 @@
             this.col상태.Visible = true;
             this.col상태.VisibleIndex = 4;
             // 
+            // groupControl3
+            // 
+            this.groupControl3.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.groupControl3.Appearance.Options.UseBackColor = true;
+            this.groupControl3.Controls.Add(this.GridControl2);
+            this.groupControl3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupControl3.Location = new System.Drawing.Point(0, 440);
+            this.groupControl3.Name = "groupControl3";
+            this.groupControl3.Size = new System.Drawing.Size(943, 358);
+            this.groupControl3.TabIndex = 11;
+            this.groupControl3.Text = "Lights";
+            // 
+            // GridControl2
+            // 
+            this.GridControl2.DataSource = this.Bind조명설정;
+            this.GridControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GridControl2.Location = new System.Drawing.Point(2, 23);
+            this.GridControl2.MainView = this.GridView2;
+            this.GridControl2.Name = "GridControl2";
+            this.GridControl2.Size = new System.Drawing.Size(939, 333);
+            this.GridControl2.TabIndex = 1;
+            this.GridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.GridView2});
+            // 
+            // GridView2
+            // 
+            this.GridView2.AllowColumnMenu = true;
+            this.GridView2.AllowCustomMenu = true;
+            this.GridView2.AllowExport = true;
+            this.GridView2.AllowPrint = true;
+            this.GridView2.AllowSettingsMenu = false;
+            this.GridView2.AllowSummaryMenu = true;
+            this.GridView2.ApplyFocusedRow = true;
+            this.GridView2.Caption = "";
+            this.GridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.col포트,
+            this.col채널,
+            this.col밝기1,
+            this.col설명1,
+            this.col켜짐});
+            this.GridView2.FooterPanelHeight = 21;
+            this.GridView2.GridControl = this.GridControl2;
+            this.GridView2.GroupRowHeight = 21;
+            this.GridView2.IndicatorWidth = 44;
+            this.GridView2.MinColumnRowHeight = 24;
+            this.GridView2.MinRowHeight = 18;
+            this.GridView2.Name = "GridView2";
+            this.GridView2.OptionsBehavior.Editable = false;
+            this.GridView2.OptionsBehavior.EditorShowMode = DevExpress.Utils.EditorShowMode.Click;
+            this.GridView2.OptionsFilter.UseNewCustomFilterDialog = true;
+            this.GridView2.OptionsNavigation.EnterMoveNextColumn = true;
+            this.GridView2.OptionsPrint.AutoWidth = false;
+            this.GridView2.OptionsPrint.UsePrintStyles = false;
+            this.GridView2.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.False;
+            this.GridView2.OptionsView.ShowGroupPanel = false;
+            this.GridView2.RowHeight = 20;
+            // 
+            // Bind조명설정
+            // 
+            this.Bind조명설정.DataSource = typeof(TabberCapture.Schemas.조명제어);
+            // 
+            // col포트
+            // 
+            this.col포트.AppearanceHeader.Options.UseTextOptions = true;
+            this.col포트.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.col포트.FieldName = "포트";
+            this.col포트.Name = "col포트";
+            this.col포트.Visible = true;
+            this.col포트.VisibleIndex = 0;
+            // 
+            // col채널
+            // 
+            this.col채널.AppearanceHeader.Options.UseTextOptions = true;
+            this.col채널.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.col채널.FieldName = "채널";
+            this.col채널.Name = "col채널";
+            this.col채널.Visible = true;
+            this.col채널.VisibleIndex = 1;
+            // 
+            // col밝기1
+            // 
+            this.col밝기1.AppearanceHeader.Options.UseTextOptions = true;
+            this.col밝기1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.col밝기1.FieldName = "밝기";
+            this.col밝기1.Name = "col밝기1";
+            this.col밝기1.Visible = true;
+            this.col밝기1.VisibleIndex = 2;
+            // 
+            // col설명1
+            // 
+            this.col설명1.AppearanceHeader.Options.UseTextOptions = true;
+            this.col설명1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.col설명1.FieldName = "설명";
+            this.col설명1.Name = "col설명1";
+            this.col설명1.Visible = true;
+            this.col설명1.VisibleIndex = 3;
+            // 
+            // col켜짐
+            // 
+            this.col켜짐.AppearanceHeader.Options.UseTextOptions = true;
+            this.col켜짐.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.col켜짐.FieldName = "켜짐";
+            this.col켜짐.Name = "col켜짐";
+            this.col켜짐.Visible = true;
+            this.col켜짐.VisibleIndex = 4;
+            // 
             // CamSettings
             // 
             this.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
@@ -315,14 +372,14 @@
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.GridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Bind카메라설정)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
             this.groupControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GridControl2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Bind조명설정)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -349,5 +406,10 @@
         private DevExpress.XtraGrid.Columns.GridColumn col밝기;
         private DevExpress.XtraGrid.Columns.GridColumn col대비;
         private DevExpress.XtraGrid.Columns.GridColumn col상태;
+        private DevExpress.XtraGrid.Columns.GridColumn col포트;
+        private DevExpress.XtraGrid.Columns.GridColumn col채널;
+        private DevExpress.XtraGrid.Columns.GridColumn col밝기1;
+        private DevExpress.XtraGrid.Columns.GridColumn col설명1;
+        private DevExpress.XtraGrid.Columns.GridColumn col켜짐;
     }
 }

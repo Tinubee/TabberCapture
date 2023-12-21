@@ -44,10 +44,12 @@ namespace TabberCapture
                 그랩제어 = new 그랩제어();
                 환경설정 = new 환경설정();
                 모델자료 = new 모델자료();
+                신호제어 = new 신호제어();
 
                 그랩제어.Init();
                 환경설정.Init();
                 모델자료.Init();
+                신호제어.Init();
                 Initialized.Invoke(null, true);
                 return true;
             }
@@ -59,6 +61,13 @@ namespace TabberCapture
             Initialized.Invoke(null, false);
             return false;
         }
+
+        public static void Start()
+        {
+            if (Global.환경설정.동작구분 != 동작구분.Live) return;
+
+            신호제어.Start();
+        }
         public static Boolean Close()
         {
             //Global.정보로그(로그영역, "종료", "시스템을 종료 합니다.", false);
@@ -67,6 +76,7 @@ namespace TabberCapture
                 그랩제어?.Close();
                 조명제어?.Close();
                 환경설정?.Close();
+                신호제어?.Close();
                 Properties.Settings.Default.Save();
                 Debug.WriteLine("시스템 종료");
                 return true;
