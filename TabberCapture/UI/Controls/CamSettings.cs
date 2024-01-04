@@ -13,11 +13,13 @@ using TabberCapture.Schemas;
 
 namespace TabberCapture.UI.Controls
 {
-    public partial class CamSettings : DevExpress.XtraEditors.XtraUserControl
+    public partial class CamSettings : XtraUserControl
     {
+        private LocalizationConfig 번역 = new LocalizationConfig();
         public CamSettings()
         {
             InitializeComponent();
+            this.BindLocalization.DataSource = this.번역;
         }
 
         public void Init()
@@ -47,10 +49,11 @@ namespace TabberCapture.UI.Controls
 
         private void b저장_Click(object sender, EventArgs e)
         {
+            if (!MvUtils.Utils.Confirm(번역.저장확인, Localization.확인.GetString())) return;
             this.GridControl1.EmbeddedNavigator.Buttons.DoClick(this.GridControl1.EmbeddedNavigator.Buttons.EndEdit);
             this.GridControl2.EmbeddedNavigator.Buttons.DoClick(this.GridControl2.EmbeddedNavigator.Buttons.EndEdit);
-            Global.그랩제어.Save();
-            Global.조명제어.Save();
+            Global.그랩제어?.Save();
+            Global.조명제어?.Save();
             //Global.정보로그("카메라 설정", "설정저장", "저장되었습니다.", this.FindForm());
         }
 
@@ -60,6 +63,7 @@ namespace TabberCapture.UI.Controls
             BaslerGigE 장치 = view.GetRow(e.RowHandle) as BaslerGigE;
             if (장치 == null) return;
             GridControl1.EmbeddedNavigator.Buttons.DoClick(GridControl1.EmbeddedNavigator.Buttons.EndEdit);
+            if (e.Column.FieldName == this.col노출.FieldName) 장치.노출적용();
             //if (e.Column.FieldName == this.col밝기.FieldName) 장치.밝기적용();
             //else if (e.Column.FieldName == this.col대비.FieldName) 장치.대비적용();
             //else if (e.Column.FieldName == this.col노출.FieldName) 장치.노출적용();
@@ -79,6 +83,26 @@ namespace TabberCapture.UI.Controls
             조명정보 정보 = this.GridView2.GetRow(this.GridView2.FocusedRowHandle) as 조명정보;
             if (정보 == null) return;
             정보.OnOff();
+        }
+
+        private class LocalizationConfig
+        {
+            private enum Items
+            {
+                [Translation("Save", "설정저장")]
+                설정저장,
+                [Translation("It's saved.", "저장되었습니다.")]
+                저장완료,
+                [Translation("Save your device setting?", "장치설정을 저장하시겠습니까?")]
+                저장확인,
+            }
+
+            public String 기본경로 { get { return Localization.GetString(typeof(환경설정).GetProperty(nameof(환경설정.기본경로))); } }
+            public String 문서저장 { get { return Localization.GetString(typeof(환경설정).GetProperty(nameof(환경설정.문서저장))); } }
+            public String 사진저장 { get { return Localization.GetString(typeof(환경설정).GetProperty(nameof(환경설정.사진저장))); } }
+            public String 설정저장 { get { return Localization.GetString(Items.설정저장); } }
+            public String 저장완료 { get { return Localization.GetString(Items.저장완료); } }
+            public String 저장확인 { get { return Localization.GetString(Items.저장확인); } }
         }
     }
 }

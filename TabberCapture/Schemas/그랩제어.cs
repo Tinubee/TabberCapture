@@ -203,7 +203,7 @@ namespace TabberCapture.Schemas
         public virtual Boolean Start() => false;
         public virtual Boolean Stop() => false;
         public virtual Boolean Close() => false;
-        public virtual Boolean 수동촬영() => false;
+        public virtual void 수동촬영() => 수동촬영();
         //public virtual void TurnOn() => Global.조명제어.TurnOn(this.구분);
         //public virtual void TurnOff() => Global.조명제어.TurnOff(this.구분);
     }
@@ -228,6 +228,8 @@ namespace TabberCapture.Schemas
                 this.Device = info;
                 this.Camera.StreamGrabber.ImageGrabbed += onImageGrabbed;
                 //this.ImageGrabbedEvent += onImageGrabbed;
+                Debug.WriteLine($"{this.Camera.CameraInfo["Address"].Split(':')[0]}");
+                this.주소 = $"{this.Camera.CameraInfo["Address"].Split(':')[0]}";
                 this.상태 = this.Init();
             }
             catch (Exception ex)
@@ -238,21 +240,25 @@ namespace TabberCapture.Schemas
             return this.상태;
         }
 
-        public override Boolean 수동촬영()
+        public override async void 수동촬영()
         {
-            Debug.WriteLine("수동촬영 신호들어옴");
-            //this.Camera.StreamGrabber.Start();
-            //this.Camera.Parameters[PLCamera.AcquisitionMode].SetValue(PLCamera.AcquisitionMode.SingleFrame);
+            //Debug.WriteLine("수동촬영 신호들어옴");
+            if(this.지연시간 != 0)
+            {
+                Debug.WriteLine($"DelayTime : {this.지연시간}");
+                //int delayMilliseconds = (int)(this.지연시간 * 1000);
+                await Task.Delay((int)this.지연시간);
+            }
+            
             this.Camera.StreamGrabber.Start(1, GrabStrategy.OneByOne, GrabLoop.ProvidedByStreamGrabber);
             this.Camera.ExecuteSoftwareTrigger();
-            return true;
         }
 
         public void 노출적용()
         {
             if (this.Camera == null) return;
 
-            this.Camera.Parameters[PLCamera.ExposureTimeAbs].SetValue(this.노출);
+            this.Camera.Parameters[PLCamera.ExposureTime].SetValue(this.노출);
         }
 
         public void 대비적용()
@@ -281,12 +287,6 @@ namespace TabberCapture.Schemas
         private void onImageGrabbed(object sender, ImageGrabbedEventArgs e)
         {
             Debug.WriteLine("onImageGrabbed Event 들어옴");
-            //if (InvokeRequired)
-            //{
-            //    BeginInvoke(new EventHandler<ImageGrabbedEventArgs>(onImageGrabbed), sender, e.Clone()); // 이게 중요. e.Clone()
-            //    GC.Collect();
-            //    return;
-            //}
             AcquisitionData acq = new AcquisitionData(this.구분);
             try
             {

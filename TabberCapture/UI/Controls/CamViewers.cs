@@ -45,6 +45,7 @@ namespace TabberCapture.UI.Controls
         private void B카메라1번수동촬영_Click(object sender, EventArgs e)
         {
             Debug.WriteLine("1번카메라 수동촬영");
+            //Global.그랩제어.GetItem(카메라구분.Cam01).
             Global.그랩제어.GetItem(카메라구분.Cam01).수동촬영();
         }
         private void B카메라2번수동촬영_Click(object sender, EventArgs e)

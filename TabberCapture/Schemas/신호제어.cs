@@ -69,12 +69,14 @@ namespace TabberCapture.Schemas
             this.모듈정보 = new InstantDiCtrl();
             this.모듈정보.SelectedDevice = new DeviceInformation(디바이스번호);
 
+            Debug.WriteLine($"PLC Module : {this.모듈정보.Module}");
             if (!모듈정보.Initialized) return false;
 
             return true;
         }
         public void Start()
         {
+            Debug.WriteLine($"PLC Start !!");
             this.동작여부 = true;
             Task.Run(입출신호분석);
         }

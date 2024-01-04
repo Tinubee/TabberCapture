@@ -48,13 +48,14 @@
             this.col상태 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             this.GridControl2 = new MvUtils.CustomGrid();
-            this.GridView2 = new MvUtils.CustomView();
             this.Bind조명설정 = new System.Windows.Forms.BindingSource(this.components);
+            this.GridView2 = new MvUtils.CustomView();
             this.col포트 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col채널 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col밝기1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col설명1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col켜짐 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.BindLocalization = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
@@ -65,8 +66,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridControl2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Bind조명설정)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindLocalization)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -107,10 +109,10 @@
             // 
             this.GridControl1.DataSource = this.Bind카메라설정;
             this.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GridControl1.Location = new System.Drawing.Point(2, 23);
+            this.GridControl1.Location = new System.Drawing.Point(2, 27);
             this.GridControl1.MainView = this.GridView1;
             this.GridControl1.Name = "GridControl1";
-            this.GridControl1.Size = new System.Drawing.Size(939, 415);
+            this.GridControl1.Size = new System.Drawing.Size(939, 411);
             this.GridControl1.TabIndex = 0;
             this.GridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridView1});
@@ -263,13 +265,17 @@
             // 
             this.GridControl2.DataSource = this.Bind조명설정;
             this.GridControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GridControl2.Location = new System.Drawing.Point(2, 23);
+            this.GridControl2.Location = new System.Drawing.Point(2, 27);
             this.GridControl2.MainView = this.GridView2;
             this.GridControl2.Name = "GridControl2";
-            this.GridControl2.Size = new System.Drawing.Size(939, 333);
+            this.GridControl2.Size = new System.Drawing.Size(939, 329);
             this.GridControl2.TabIndex = 1;
             this.GridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridView2});
+            // 
+            // Bind조명설정
+            // 
+            this.Bind조명설정.DataSource = typeof(TabberCapture.Schemas.조명제어);
             // 
             // GridView2
             // 
@@ -303,10 +309,6 @@
             this.GridView2.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.False;
             this.GridView2.OptionsView.ShowGroupPanel = false;
             this.GridView2.RowHeight = 20;
-            // 
-            // Bind조명설정
-            // 
-            this.Bind조명설정.DataSource = typeof(TabberCapture.Schemas.조명제어);
             // 
             // col포트
             // 
@@ -378,8 +380,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
             this.groupControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GridControl2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Bind조명설정)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindLocalization)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -411,5 +414,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn col밝기1;
         private DevExpress.XtraGrid.Columns.GridColumn col설명1;
         private DevExpress.XtraGrid.Columns.GridColumn col켜짐;
+        private System.Windows.Forms.BindingSource BindLocalization;
     }
 }

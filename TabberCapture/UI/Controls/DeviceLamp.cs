@@ -49,7 +49,7 @@ namespace TabberCapture.UI.Controls
             this.카메라2.Set(Global.장치상태.카메라2);
             this.카메라3.Set(Global.장치상태.카메라3);
             this.카메라4.Set(Global.장치상태.카메라4);
-            this.카메라4.Set(Global.장치상태.카메라5);
+            this.카메라5.Set(Global.장치상태.카메라5);
             //this.조명장치.Set(Global.장치상태.조명장치);
         }
 
