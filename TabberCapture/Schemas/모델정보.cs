@@ -52,6 +52,16 @@ namespace TabberCapture.Schemas
             this.Load();
             this.BaseModel();
         }
+        public void Close()
+        {
+            this.Save();
+            //foreach (모델정보 모델 in this)
+            //    모델.Close();
+        }
+        public void Save()
+        {
+            File.WriteAllText(저장파일, JsonConvert.SerializeObject(this, Formatting.Indented));
+        }
         private void Load()
         {
             if (!File.Exists(저장파일))

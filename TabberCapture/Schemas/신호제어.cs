@@ -111,7 +111,7 @@ namespace TabberCapture.Schemas
             Dictionary<입력번호, Boolean> 입력변경 = this.입력자료.Set(입력);
 
             Boolean 변경 = 입력변경.Count > 0;
-
+            Debug.WriteLine($"입출상태 갱신 : {this.포트데이터} - {변경}");
             return 변경;
         }
 

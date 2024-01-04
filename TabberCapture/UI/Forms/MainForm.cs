@@ -21,6 +21,7 @@ namespace TabberCapture
         public MainForm()
         {
             InitializeComponent();
+            this.ShowWaitForm();
             this.타이틀.Caption = $"IVM: {환경설정.프로젝트번호}";
             this.Shown += MainFormShown;
             this.FormClosing += MainFormClosing;
@@ -49,7 +50,7 @@ namespace TabberCapture
         {
             Global.Initialized -= GlobalInitialized;
             if (!e) { this.Close(); return; }
-            //this.HideWaitForm();
+            this.HideWaitForm();
             Common.SetForegroundWindow(this.Handle.ToInt32());
             Global.DxLocalization();
             this.Init();
@@ -74,7 +75,7 @@ namespace TabberCapture
 
             if (Global.환경설정.동작구분 != 동작구분.Live) return;
 
-            Global.Start();
+            //Global.Start();
         }
 
         private void CloseForm()

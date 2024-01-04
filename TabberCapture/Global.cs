@@ -42,14 +42,22 @@ namespace TabberCapture
             try
             {
                 그랩제어 = new 그랩제어();
+                Debug.WriteLine("그랩제어 Class 생성");
                 환경설정 = new 환경설정();
+                Debug.WriteLine("환경설정 Class 생성");
                 모델자료 = new 모델자료();
+                Debug.WriteLine("모델자료 Class 생성");
                 신호제어 = new 신호제어();
+                Debug.WriteLine("신호제어 Class 생성");
 
                 그랩제어.Init();
+                Debug.WriteLine("그랩제어 초기화 완료");
                 환경설정.Init();
+                Debug.WriteLine("환경설정 초기화 완료");
                 모델자료.Init();
+                Debug.WriteLine("모델자료 초기화 완료");
                 신호제어.Init();
+                Debug.WriteLine("신호제어 초기화 완료");
                 Initialized.Invoke(null, true);
                 return true;
             }
@@ -66,7 +74,7 @@ namespace TabberCapture
         {
             if (Global.환경설정.동작구분 != 동작구분.Live) return;
 
-            신호제어.Start();
+            신호제어?.Start();
         }
         public static Boolean Close()
         {
@@ -77,6 +85,7 @@ namespace TabberCapture
                 조명제어?.Close();
                 환경설정?.Close();
                 신호제어?.Close();
+                모델자료?.Close();
                 Properties.Settings.Default.Save();
                 Debug.WriteLine("시스템 종료");
                 return true;

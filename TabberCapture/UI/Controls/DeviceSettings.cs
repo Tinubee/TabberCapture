@@ -21,7 +21,7 @@ namespace TabberCapture.UI.Controls
         public void Init()
         {
             this.config1.Init();
-            //this.camSettings1.Init();
+            this.camSettings1.Init();
         }
     }
 }

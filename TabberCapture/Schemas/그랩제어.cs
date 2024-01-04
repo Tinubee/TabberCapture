@@ -11,6 +11,7 @@ using System.Threading;
 using Basler.Pylon;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Windows.Forms;
 using MvUtils;
 
 namespace TabberCapture.Schemas
@@ -49,11 +50,11 @@ namespace TabberCapture.Schemas
 
         public Boolean Init()
         {
-            this.카메라1 = new BaslerGigE() { 구분 = 카메라구분.Cam01, 코드 = "" };
-            this.카메라2 = new BaslerGigE() { 구분 = 카메라구분.Cam02, 코드 = "" };
-            this.카메라3 = new BaslerGigE() { 구분 = 카메라구분.Cam03, 코드 = "" };
-            this.카메라4 = new BaslerGigE() { 구분 = 카메라구분.Cam04, 코드 = "" };
-            this.카메라5 = new BaslerGigE() { 구분 = 카메라구분.Cam05, 코드 = "" };
+            this.카메라1 = new BaslerGigE() { 구분 = 카메라구분.Cam01, 코드 = "40216985" };
+            this.카메라2 = new BaslerGigE() { 구분 = 카메라구분.Cam02, 코드 = "40216979" };
+            this.카메라3 = new BaslerGigE() { 구분 = 카메라구분.Cam03, 코드 = "40216983" };
+            this.카메라4 = new BaslerGigE() { 구분 = 카메라구분.Cam04, 코드 = "40229766" };
+            this.카메라5 = new BaslerGigE() { 구분 = 카메라구분.Cam05, 코드 = "40229770" };
 
             this.Add(카메라구분.Cam01, this.카메라1);
             this.Add(카메라구분.Cam02, this.카메라2);
@@ -75,12 +76,14 @@ namespace TabberCapture.Schemas
             }
 
             List<ICameraInfo> 카메라들 = CameraFinder.Enumerate();
+            Debug.WriteLine($"PC와 연결되어있는 카메라 : ${카메라들.Count} 개");
             for (int lop = 0; lop < 카메라들.Count; lop++)
             {
                 ICameraInfo gigeInfo = 카메라들[lop];
                 BaslerGigE gige = this.GetItem(gigeInfo[CameraInfoKey.SerialNumber]) as BaslerGigE;
                 if (gige == null) continue;
                 gige.Init(gigeInfo);
+                Debug.WriteLine($"{gigeInfo[CameraInfoKey.SerialNumber]} 연결완료.");
             }
             GC.Collect();
             return true;
@@ -113,7 +116,7 @@ namespace TabberCapture.Schemas
         {
             this.그랩완료보고?.Invoke(카메라, 이미지);
         }
-
+       
         public void ImageSave(Mat 이미지, 카메라구분 카메라, Int32 검사번호)
         {
             //if (!Global.환경설정.사진저장OK && !Global.환경설정.사진저장NG) return;
@@ -160,11 +163,11 @@ namespace TabberCapture.Schemas
         [JsonProperty("IpAddress"), Description("IP")]
         public virtual String 주소 { get; set; } = String.Empty;
         [JsonProperty("Delaytime"), Description("Delaytime")]
-        public virtual Double 지연시간 { get; set; } = 1000;
+        public virtual Double 지연시간 { get; set; } = 0;
         [JsonProperty("Timeout"), Description("Timeout")]
         public virtual Double 시간 { get; set; } = 1000;
         [JsonProperty("Exposure"), Description("Exposure")]
-        public virtual Single 노출 { get; set; } = 300;
+        public virtual Single 노출 { get; set; } = 5000;
         [JsonProperty("BlackLevel"), Description("Black Level")]
         public virtual UInt32 밝기 { get; set; } = 0;
         [JsonProperty("Contrast"), Description("Contrast")]
@@ -200,6 +203,7 @@ namespace TabberCapture.Schemas
         public virtual Boolean Start() => false;
         public virtual Boolean Stop() => false;
         public virtual Boolean Close() => false;
+        public virtual Boolean 수동촬영() => false;
         //public virtual void TurnOn() => Global.조명제어.TurnOn(this.구분);
         //public virtual void TurnOff() => Global.조명제어.TurnOff(this.구분);
     }
@@ -214,15 +218,16 @@ namespace TabberCapture.Schemas
         private Camera Camera = null;
         [JsonIgnore]
         private ICameraInfo Device;
-        [JsonIgnore]
-        private EventHandler<ImageGrabbedEventArgs> ImageGrabbedEvent;
+        //[JsonIgnore]
+        //private EventHandler<ImageGrabbedEventArgs> ImageGrabbedEvent;
         public Boolean Init(ICameraInfo info)
         {
             try
             {
                 this.Camera = new Camera(info);
                 this.Device = info;
-                this.ImageGrabbedEvent += onImageGrabbed;
+                this.Camera.StreamGrabber.ImageGrabbed += onImageGrabbed;
+                //this.ImageGrabbedEvent += onImageGrabbed;
                 this.상태 = this.Init();
             }
             catch (Exception ex)
@@ -231,6 +236,16 @@ namespace TabberCapture.Schemas
                 this.상태 = false;
             }
             return this.상태;
+        }
+
+        public override Boolean 수동촬영()
+        {
+            Debug.WriteLine("수동촬영 신호들어옴");
+            //this.Camera.StreamGrabber.Start();
+            //this.Camera.Parameters[PLCamera.AcquisitionMode].SetValue(PLCamera.AcquisitionMode.SingleFrame);
+            this.Camera.StreamGrabber.Start(1, GrabStrategy.OneByOne, GrabLoop.ProvidedByStreamGrabber);
+            this.Camera.ExecuteSoftwareTrigger();
+            return true;
         }
 
         public void 노출적용()
@@ -258,33 +273,49 @@ namespace TabberCapture.Schemas
         {
             this.Camera.Open(); //카메라오픈
             this.Camera.Parameters[PLCamera.AcquisitionMode].SetValue(PLCamera.AcquisitionMode.SingleFrame);
-            this.Camera.Parameters[PLCamera.GevSCPSPacketSize].SetValue(9000); //카메라 프레임 올려주기위한 설정
+            this.Camera.Parameters[PLCamera.GevSCPSPacketSize].SetValue(8192); //카메라 프레임 올려주기위한 설정
             return true;
         }
         public void TrigForce() => this.Camera.StreamGrabber.Start(1, GrabStrategy.OneByOne, GrabLoop.ProvidedByStreamGrabber);
 
         private void onImageGrabbed(object sender, ImageGrabbedEventArgs e)
         {
+            Debug.WriteLine("onImageGrabbed Event 들어옴");
+            //if (InvokeRequired)
+            //{
+            //    BeginInvoke(new EventHandler<ImageGrabbedEventArgs>(onImageGrabbed), sender, e.Clone()); // 이게 중요. e.Clone()
+            //    GC.Collect();
+            //    return;
+            //}
             AcquisitionData acq = new AcquisitionData(this.구분);
             try
             {
                 if (!e.GrabResult.IsValid) return;
-
+                Debug.WriteLine($"{this.구분} Grab완료.");
+                PixelDataConverter ImageConverter = new PixelDataConverter();
                 IGrabResult ImageResult = e.GrabResult;
 
                 Bitmap Image = new Bitmap(ImageResult.Width, ImageResult.Height, PixelFormat.Format32bppRgb);
                 BitmapData Imagedata = Image.LockBits(new Rectangle(0, 0, Image.Width, Image.Height), ImageLockMode.ReadWrite, Image.PixelFormat);
-                IntPtr ptrbmp = Imagedata.Scan0;
-                Mat image = new Mat(Image.Height, Image.Width, MatType.CV_8U, ptrbmp);
+                //IntPtr ptrbmp = Imagedata.Scan0;
+                //Mat image = new Mat(Image.Height, Image.Width, MatType.CV_8U, ptrbmp);
                 //Image.UnlockBits(Imagedata);
-                acq.SetImage(image);
-                Global.그랩제어.그랩완료(this.구분, image);
+
+                ImageConverter.OutputPixelFormat = PixelType.BGRA8packed;
+                IntPtr ptrbmp = Imagedata.Scan0;
+                ImageConverter.Convert(ptrbmp, Imagedata.Stride * Image.Height, ImageResult);
+                Image.UnlockBits(Imagedata);
+
+                acq.SetImage(Image);
+                //Global.그랩제어.그랩완료(this.구분, image);
+                this.Camera.StreamGrabber.Stop();
                 GC.Collect();
                 //this.Stop();
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex);
+                Debug.WriteLine(ex.Message, "System Exception");
+                acq.Dispose();
                 return;
             }
             this.AcquisitionFinishedEvent?.Invoke(this.구분, acq);
@@ -312,6 +343,12 @@ namespace TabberCapture.Schemas
                 this.MatImage = image;
                 this.BmpImage?.Dispose();
                 this.BmpImage = OpenCvSharp.Extensions.BitmapConverter.ToBitmap(this.MatImage);
+            }
+
+            public void SetImage(Bitmap image)
+            {
+                this.BmpImage?.Dispose();
+                this.BmpImage = image;
             }
 
             public void Dispose()

@@ -46,8 +46,8 @@
             this.p환경설정 = new DevExpress.XtraBars.TabFormPage();
             this.tabFormContentContainer2 = new DevExpress.XtraBars.TabFormContentContainer();
             this.e환경설정 = new TabberCapture.UI.Controls.DeviceSettings();
-            this.tabFormContentContainer3 = new DevExpress.XtraBars.TabFormContentContainer();
             this.p입출자료 = new DevExpress.XtraBars.TabFormPage();
+            this.tabFormContentContainer3 = new DevExpress.XtraBars.TabFormContentContainer();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.e입력신호 = new TabberCapture.UI.Controls.IOControl();
             ((System.ComponentModel.ISupportInitialize)(this.tabFormControl1)).BeginInit();
@@ -74,11 +74,11 @@
             this.tabFormControl1.Pages.Add(this.p메인화면);
             this.tabFormControl1.Pages.Add(this.p환경설정);
             this.tabFormControl1.Pages.Add(this.p입출자료);
-            this.tabFormControl1.SelectedPage = this.p입출자료;
+            this.tabFormControl1.SelectedPage = this.p메인화면;
             this.tabFormControl1.ShowAddPageButton = false;
             this.tabFormControl1.ShowTabCloseButtons = false;
             this.tabFormControl1.ShowTabsInTitleBar = DevExpress.XtraBars.ShowTabsInTitleBar.True;
-            this.tabFormControl1.Size = new System.Drawing.Size(1918, 31);
+            this.tabFormControl1.Size = new System.Drawing.Size(1920, 30);
             this.tabFormControl1.TabForm = this;
             this.tabFormControl1.TabIndex = 0;
             this.tabFormControl1.TabLeftItemLinks.Add(this.타이틀);
@@ -115,9 +115,9 @@
             this.tabFormContentContainer1.Controls.Add(this.e결과뷰어);
             this.tabFormContentContainer1.Controls.Add(this.e상태뷰어);
             this.tabFormContentContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabFormContentContainer1.Location = new System.Drawing.Point(0, 31);
+            this.tabFormContentContainer1.Location = new System.Drawing.Point(0, 30);
             this.tabFormContentContainer1.Name = "tabFormContentContainer1";
-            this.tabFormContentContainer1.Size = new System.Drawing.Size(1918, 1068);
+            this.tabFormContentContainer1.Size = new System.Drawing.Size(1920, 1070);
             this.tabFormContentContainer1.TabIndex = 1;
             // 
             // e결과뷰어
@@ -130,7 +130,7 @@
             this.e결과뷰어.Location = new System.Drawing.Point(0, 105);
             this.e결과뷰어.Margin = new System.Windows.Forms.Padding(0);
             this.e결과뷰어.Name = "e결과뷰어";
-            this.e결과뷰어.Size = new System.Drawing.Size(1918, 963);
+            this.e결과뷰어.Size = new System.Drawing.Size(1920, 965);
             this.e결과뷰어.TabIndex = 1;
             // 
             // e상태뷰어
@@ -142,7 +142,7 @@
             this.e상태뷰어.Dock = System.Windows.Forms.DockStyle.Top;
             this.e상태뷰어.Location = new System.Drawing.Point(0, 0);
             this.e상태뷰어.Name = "e상태뷰어";
-            this.e상태뷰어.Size = new System.Drawing.Size(1918, 105);
+            this.e상태뷰어.Size = new System.Drawing.Size(1920, 105);
             this.e상태뷰어.TabIndex = 0;
             // 
             // p환경설정
@@ -156,9 +156,9 @@
             // 
             this.tabFormContentContainer2.Controls.Add(this.e환경설정);
             this.tabFormContentContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabFormContentContainer2.Location = new System.Drawing.Point(0, 31);
+            this.tabFormContentContainer2.Location = new System.Drawing.Point(0, 30);
             this.tabFormContentContainer2.Name = "tabFormContentContainer2";
-            this.tabFormContentContainer2.Size = new System.Drawing.Size(1918, 1068);
+            this.tabFormContentContainer2.Size = new System.Drawing.Size(1920, 1070);
             this.tabFormContentContainer2.TabIndex = 2;
             // 
             // e환경설정
@@ -172,17 +172,8 @@
             this.e환경설정.Dock = System.Windows.Forms.DockStyle.Fill;
             this.e환경설정.Location = new System.Drawing.Point(0, 0);
             this.e환경설정.Name = "e환경설정";
-            this.e환경설정.Size = new System.Drawing.Size(1918, 1068);
+            this.e환경설정.Size = new System.Drawing.Size(1920, 1070);
             this.e환경설정.TabIndex = 0;
-            // 
-            // tabFormContentContainer3
-            // 
-            this.tabFormContentContainer3.Controls.Add(this.splitContainerControl1);
-            this.tabFormContentContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabFormContentContainer3.Location = new System.Drawing.Point(0, 31);
-            this.tabFormContentContainer3.Name = "tabFormContentContainer3";
-            this.tabFormContentContainer3.Size = new System.Drawing.Size(1918, 1068);
-            this.tabFormContentContainer3.TabIndex = 3;
             // 
             // p입출자료
             // 
@@ -190,6 +181,15 @@
             this.p입출자료.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("p입출자료.ImageOptions.SvgImage")));
             this.p입출자료.Name = "p입출자료";
             this.p입출자료.Text = "I/O";
+            // 
+            // tabFormContentContainer3
+            // 
+            this.tabFormContentContainer3.Controls.Add(this.splitContainerControl1);
+            this.tabFormContentContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabFormContentContainer3.Location = new System.Drawing.Point(0, 30);
+            this.tabFormContentContainer3.Name = "tabFormContentContainer3";
+            this.tabFormContentContainer3.Size = new System.Drawing.Size(1920, 1070);
+            this.tabFormContentContainer3.TabIndex = 3;
             // 
             // splitContainerControl1
             // 
@@ -205,7 +205,7 @@
             // splitContainerControl1.Panel2
             // 
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1918, 1068);
+            this.splitContainerControl1.Size = new System.Drawing.Size(1920, 1070);
             this.splitContainerControl1.SplitterPosition = 930;
             this.splitContainerControl1.TabIndex = 0;
             // 
@@ -218,7 +218,7 @@
             this.e입력신호.Dock = System.Windows.Forms.DockStyle.Fill;
             this.e입력신호.Location = new System.Drawing.Point(0, 0);
             this.e입력신호.Name = "e입력신호";
-            this.e입력신호.Size = new System.Drawing.Size(930, 1068);
+            this.e입력신호.Size = new System.Drawing.Size(930, 1070);
             this.e입력신호.TabIndex = 0;
             // 
             // MainForm
@@ -230,8 +230,8 @@
             this.Appearance.Options.UseForeColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1918, 1099);
-            this.Controls.Add(this.tabFormContentContainer3);
+            this.ClientSize = new System.Drawing.Size(1920, 1100);
+            this.Controls.Add(this.tabFormContentContainer1);
             this.Controls.Add(this.tabFormControl1);
             this.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
