@@ -82,7 +82,7 @@
             this.layoutControl1.Controls.Add(this.e사진저장);
             this.layoutControl1.Controls.Add(this.b설정저장);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.layoutControl1.Location = new System.Drawing.Point(12, 34);
+            this.layoutControl1.Location = new System.Drawing.Point(12, 38);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.Root;
             this.layoutControl1.Size = new System.Drawing.Size(575, 701);
@@ -92,7 +92,7 @@
             // e기본경로
             // 
             this.e기본경로.EnterMoveNextControl = true;
-            this.e기본경로.Location = new System.Drawing.Point(109, 30);
+            this.e기본경로.Location = new System.Drawing.Point(109, 34);
             this.e기본경로.Name = "e기본경로";
             this.e기본경로.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.e기본경로.Properties.Appearance.Options.UseFont = true;
@@ -106,7 +106,7 @@
             // e문서저장
             // 
             this.e문서저장.EnterMoveNextControl = true;
-            this.e문서저장.Location = new System.Drawing.Point(109, 62);
+            this.e문서저장.Location = new System.Drawing.Point(109, 66);
             this.e문서저장.Name = "e문서저장";
             this.e문서저장.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.e문서저장.Properties.Appearance.Options.UseFont = true;
@@ -120,7 +120,7 @@
             // e사진저장
             // 
             this.e사진저장.EnterMoveNextControl = true;
-            this.e사진저장.Location = new System.Drawing.Point(109, 94);
+            this.e사진저장.Location = new System.Drawing.Point(109, 98);
             this.e사진저장.Name = "e사진저장";
             this.e사진저장.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 12F);
             this.e사진저장.Properties.Appearance.Options.UseFont = true;
@@ -137,7 +137,7 @@
             this.b설정저장.Appearance.Options.UseFont = true;
             this.b설정저장.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("b설정저장.ImageOptions.SvgImage")));
             this.b설정저장.ImageOptions.SvgImageSize = new System.Drawing.Size(24, 24);
-            this.b설정저장.Location = new System.Drawing.Point(9, 126);
+            this.b설정저장.Location = new System.Drawing.Point(9, 130);
             this.b설정저장.Name = "b설정저장";
             this.b설정저장.Size = new System.Drawing.Size(557, 30);
             this.b설정저장.StyleController = this.layoutControl1;
@@ -212,7 +212,7 @@
             this.layoutControlItem2.CustomizationFormText = "layoutControlItem2";
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 96);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(561, 570);
+            this.layoutControlItem2.Size = new System.Drawing.Size(561, 566);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 

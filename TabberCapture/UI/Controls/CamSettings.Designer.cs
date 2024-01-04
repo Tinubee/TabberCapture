@@ -151,11 +151,19 @@
             this.GridView1.Name = "GridView1";
             this.GridView1.OptionsBehavior.Editable = false;
             this.GridView1.OptionsBehavior.EditorShowMode = DevExpress.Utils.EditorShowMode.Click;
+            this.GridView1.OptionsCustomization.AllowColumnMoving = false;
+            this.GridView1.OptionsCustomization.AllowFilter = false;
+            this.GridView1.OptionsCustomization.AllowGroup = false;
+            this.GridView1.OptionsCustomization.AllowMergedGrouping = DevExpress.Utils.DefaultBoolean.False;
+            this.GridView1.OptionsCustomization.AllowQuickHideColumns = false;
+            this.GridView1.OptionsCustomization.AllowSort = false;
+            this.GridView1.OptionsFilter.AllowFilterEditor = false;
             this.GridView1.OptionsFilter.UseNewCustomFilterDialog = true;
             this.GridView1.OptionsNavigation.EnterMoveNextColumn = true;
             this.GridView1.OptionsPrint.AutoWidth = false;
             this.GridView1.OptionsPrint.UsePrintStyles = false;
             this.GridView1.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.False;
+            this.GridView1.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
             this.GridView1.OptionsView.ShowGroupPanel = false;
             this.GridView1.RowHeight = 20;
             // 

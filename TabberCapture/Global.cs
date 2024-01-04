@@ -30,11 +30,13 @@ namespace TabberCapture
         public static class 장치상태
         {
             public static Boolean 정상여부 { get { return true; } }
-            public static Boolean 카메라1 { get { return Global.그랩제어?.카메라1?.상태 ?? false; } }
-            public static Boolean 카메라2 { get { return Global.그랩제어?.카메라2?.상태 ?? false; } }
-            public static Boolean 카메라3 { get { return Global.그랩제어?.카메라3?.상태 ?? false; } }
-            public static Boolean 카메라4 { get { return Global.그랩제어?.카메라4?.상태 ?? false; } }
-            public static Boolean 카메라5 { get { return Global.그랩제어?.카메라5?.상태 ?? false; } }
+            public static Boolean 카메라1 { get { return 그랩제어?.카메라1?.상태 ?? false; } }
+            public static Boolean 카메라2 { get { return 그랩제어?.카메라2?.상태 ?? false; } }
+            public static Boolean 카메라3 { get { return 그랩제어?.카메라3?.상태 ?? false; } }
+            public static Boolean 카메라4 { get { return 그랩제어?.카메라4?.상태 ?? false; } }
+            public static Boolean 카메라5 { get { return 그랩제어?.카메라5?.상태 ?? false; } }
+
+            public static Boolean 조명장치 { get { return 조명제어.정상여부; } }
         }
         public static Boolean Init()
         {
@@ -42,13 +44,10 @@ namespace TabberCapture
             try
             {
                 그랩제어 = new 그랩제어();
-                Debug.WriteLine("그랩제어 Class 생성");
                 환경설정 = new 환경설정();
-                Debug.WriteLine("환경설정 Class 생성");
                 모델자료 = new 모델자료();
-                Debug.WriteLine("모델자료 Class 생성");
                 신호제어 = new 신호제어();
-                Debug.WriteLine("신호제어 Class 생성");
+                조명제어 = new 조명제어();
 
                 그랩제어.Init();
                 Debug.WriteLine("그랩제어 초기화 완료");
@@ -58,6 +57,8 @@ namespace TabberCapture
                 Debug.WriteLine("모델자료 초기화 완료");
                 신호제어.Init();
                 Debug.WriteLine("신호제어 초기화 완료");
+                조명제어.Init();
+                Debug.WriteLine("조명제어 초기화 완료");
                 Initialized.Invoke(null, true);
                 return true;
             }

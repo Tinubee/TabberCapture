@@ -62,6 +62,7 @@ namespace TabberCapture.Schemas
         public int 디바이스번호 { get; set; } = 0;
         public int 포트번호 { get; set; } = 0;
         public byte 포트데이터;
+        public Boolean 정상여부 = false;
         public Boolean 동작여부 = false;
         public Int32 실행주기 = 5;
         public Boolean Init()
@@ -70,7 +71,9 @@ namespace TabberCapture.Schemas
             this.모듈정보.SelectedDevice = new DeviceInformation(디바이스번호);
 
             Debug.WriteLine($"PLC Module : {this.모듈정보.Module}");
-            if (!모듈정보.Initialized) return false;
+            this.정상여부 = 모듈정보.Initialized;
+
+            if (!this.정상여부) return false;
 
             return true;
         }

@@ -45,12 +45,13 @@ namespace TabberCapture.UI.Controls
             //else this.장치통신.Set(상태구분.오류);
             if (Global.환경설정.동작구분 != 동작구분.Live) return;
 
+            this.장치통신.Set(Global.신호제어.정상여부);
             this.카메라1.Set(Global.장치상태.카메라1);
             this.카메라2.Set(Global.장치상태.카메라2);
             this.카메라3.Set(Global.장치상태.카메라3);
             this.카메라4.Set(Global.장치상태.카메라4);
             this.카메라5.Set(Global.장치상태.카메라5);
-            //this.조명장치.Set(Global.장치상태.조명장치);
+            this.조명장치.Set(Global.장치상태.조명장치);
         }
 
         private enum 상태구분

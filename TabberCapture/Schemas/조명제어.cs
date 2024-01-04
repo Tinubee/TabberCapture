@@ -13,6 +13,8 @@ namespace TabberCapture.Schemas
     public enum 조명포트
     {
         None,
+        COM1,
+        COM2,
         COM3,
         COM4,
         COM5,
@@ -67,6 +69,7 @@ namespace TabberCapture.Schemas
             {
                 통신포트.Dispose();
                 통신포트 = null;
+                Debug.WriteLine($"조명 제어 포트[ {통신포트} ]에 연결할 수 없습니다. - {ex.Message}");
                 //Global.오류로그(로그영역, "장치연결", "조명 제어 포트에 연결할 수 없습니다.\n" + ex.Message, true);
                 return false;
             }
@@ -145,8 +148,8 @@ namespace TabberCapture.Schemas
     public class PD300 : 조명컨트롤러
     {
         public override String 로그영역 { get; set; } = nameof(PD300);
-        public override 조명포트 포트 { get; set; } = 조명포트.COM3;
-        public override Int32 통신속도 { get; set; } = 9600;
+        public override 조명포트 포트 { get; set; } = 조명포트.COM1;
+        public override Int32 통신속도 { get; set; } = 19200;
         public override Int32 최대밝기 { get; } = 255;
         public override byte[] Temp { get; set; } = new byte[10];
         // public override Boolean Set(조명정보 정보) => SendCommand($"{정보.카메라} Set", $"{(Int32)정보.채널 - 1}w{this.밝기변환(정보.밝기).ToString("d4")}");
@@ -222,7 +225,7 @@ namespace TabberCapture.Schemas
 
         public void Init()
         {
-            this.컨트롤러1 = new PD300() { 포트 = 조명포트.COM6 };
+            this.컨트롤러1 = new PD300() { 포트 = 조명포트.COM1 };
             this.컨트롤러1.Init();
 
             this.Add(new 조명정보(컨트롤러1) { 채널 = 조명채널.CH01, 밝기 = 100 });
@@ -230,6 +233,7 @@ namespace TabberCapture.Schemas
             this.Load();
             this.Open();
             this.Set();
+            Debug.WriteLine($"조명컨트롤러 연결상태 : {this.컨트롤러1.IsOpen()}");
         }
 
         //public 조명정보 GetItem(카메라구분 카메라)
@@ -260,6 +264,7 @@ namespace TabberCapture.Schemas
             }
             catch (Exception ex)
             {
+                Debug.WriteLine($"조명정보 Load 에러 : {ex.Message}");
                 //Global.오류로그(로그영역, "조명 설정 로드", ex.Message, false);
             }
         }
