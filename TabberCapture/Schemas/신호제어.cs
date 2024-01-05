@@ -71,6 +71,7 @@ namespace TabberCapture.Schemas
             this.모듈정보.SelectedDevice = new DeviceInformation(디바이스번호);
 
             Debug.WriteLine($"PLC Module : {this.모듈정보.Module}");
+            Debug.WriteLine($"Static DI : {this.모듈정보.SelectedDevice.Description}");
             this.정상여부 = 모듈정보.Initialized;
 
             if (!this.정상여부) return false;

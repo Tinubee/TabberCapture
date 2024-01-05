@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Views.Grid;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,7 @@ namespace TabberCapture.UI.Controls
             this.GridView1.OptionsView.ShowFooter = false;
             this.GridView1.OptionsView.NewItemRowPosition = NewItemRowPosition.Bottom;
             this.GridControl1.DataSource = Global.그랩제어.Values;
+            
 
             this.GridView2.Init();
             this.GridView2.OptionsBehavior.Editable = true;

@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Repository;
 using MvUtils;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ using TabberCapture.Schemas;
 
 namespace TabberCapture.UI.Controls
 {
-    public partial class IOControl : DevExpress.XtraEditors.XtraUserControl
+    public partial class IOControl : XtraUserControl
     {
         public IOControl()
         {

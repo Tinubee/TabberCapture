@@ -1,4 +1,7 @@
-﻿namespace TabberCapture.UI.Controls
+﻿using DevExpress.XtraEditors;
+using System.Windows.Controls.Primitives;
+
+namespace TabberCapture.UI.Controls
 {
     partial class IOControl
     {
@@ -30,31 +33,39 @@
         {
             this.components = new System.ComponentModel.Container();
             this.customGrid1 = new MvUtils.CustomGrid();
-            this.customView1 = new MvUtils.CustomView();
-            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.bind입력신호 = new System.Windows.Forms.BindingSource(this.components);
+            this.customView1 = new MvUtils.CustomView();
             this.col구분 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col번호 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col명칭 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col여부 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.repositoryItemToggleSwitch1 = new DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch();
             ((System.ComponentModel.ISupportInitialize)(this.customGrid1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bind입력신호)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bind입력신호)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch1)).BeginInit();
             this.SuspendLayout();
             // 
             // customGrid1
             // 
             this.customGrid1.DataSource = this.bind입력신호;
             this.customGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.customGrid1.Location = new System.Drawing.Point(2, 23);
+            this.customGrid1.Location = new System.Drawing.Point(2, 27);
             this.customGrid1.MainView = this.customView1;
             this.customGrid1.Name = "customGrid1";
-            this.customGrid1.Size = new System.Drawing.Size(568, 632);
+            this.customGrid1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemToggleSwitch1});
+            this.customGrid1.Size = new System.Drawing.Size(568, 675);
             this.customGrid1.TabIndex = 0;
             this.customGrid1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.customView1});
+            // 
+            // bind입력신호
+            // 
+            this.bind입력신호.DataSource = typeof(TabberCapture.UI.Controls.IOControl.입력신호자료);
             // 
             // customView1
             // 
@@ -71,12 +82,13 @@
             this.col번호,
             this.col명칭,
             this.col여부});
-            this.customView1.FooterPanelHeight = 21;
+            this.customView1.DetailHeight = 375;
+            this.customView1.FooterPanelHeight = 22;
             this.customView1.GridControl = this.customGrid1;
-            this.customView1.GroupRowHeight = 21;
+            this.customView1.GroupRowHeight = 22;
             this.customView1.IndicatorWidth = 44;
             this.customView1.MinColumnRowHeight = 24;
-            this.customView1.MinRowHeight = 18;
+            this.customView1.MinRowHeight = 1;
             this.customView1.Name = "customView1";
             this.customView1.OptionsBehavior.Editable = false;
             this.customView1.OptionsBehavior.EditorShowMode = DevExpress.Utils.EditorShowMode.Click;
@@ -86,21 +98,7 @@
             this.customView1.OptionsPrint.UsePrintStyles = false;
             this.customView1.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.False;
             this.customView1.OptionsView.ShowGroupPanel = false;
-            this.customView1.RowHeight = 20;
-            // 
-            // groupControl1
-            // 
-            this.groupControl1.Controls.Add(this.customGrid1);
-            this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupControl1.Location = new System.Drawing.Point(0, 0);
-            this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(572, 657);
-            this.groupControl1.TabIndex = 1;
-            this.groupControl1.Text = "Input";
-            // 
-            // bind입력신호
-            // 
-            this.bind입력신호.DataSource = typeof(TabberCapture.UI.Controls.IOControl.입력신호자료);
+            this.customView1.RowHeight = 21;
             // 
             // col구분
             // 
@@ -110,6 +108,7 @@
             this.col구분.Name = "col구분";
             this.col구분.Visible = true;
             this.col구분.VisibleIndex = 0;
+            this.col구분.Width = 65;
             // 
             // col번호
             // 
@@ -120,6 +119,7 @@
             this.col번호.OptionsColumn.ReadOnly = true;
             this.col번호.Visible = true;
             this.col번호.VisibleIndex = 1;
+            this.col번호.Width = 48;
             // 
             // col명칭
             // 
@@ -130,16 +130,36 @@
             this.col명칭.OptionsColumn.ReadOnly = true;
             this.col명칭.Visible = true;
             this.col명칭.VisibleIndex = 2;
+            this.col명칭.Width = 96;
             // 
             // col여부
             // 
             this.col여부.AppearanceHeader.Options.UseTextOptions = true;
             this.col여부.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.col여부.ColumnEdit = this.repositoryItemToggleSwitch1;
             this.col여부.FieldName = "여부";
             this.col여부.Name = "col여부";
             this.col여부.OptionsColumn.ReadOnly = true;
             this.col여부.Visible = true;
             this.col여부.VisibleIndex = 3;
+            this.col여부.Width = 315;
+            // 
+            // groupControl1
+            // 
+            this.groupControl1.Controls.Add(this.customGrid1);
+            this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupControl1.Location = new System.Drawing.Point(0, 0);
+            this.groupControl1.Name = "groupControl1";
+            this.groupControl1.Size = new System.Drawing.Size(572, 704);
+            this.groupControl1.TabIndex = 1;
+            this.groupControl1.Text = "Input";
+            // 
+            // repositoryItemToggleSwitch1
+            // 
+            this.repositoryItemToggleSwitch1.AutoHeight = false;
+            this.repositoryItemToggleSwitch1.Name = "repositoryItemToggleSwitch1";
+            this.repositoryItemToggleSwitch1.OffText = "Off";
+            this.repositoryItemToggleSwitch1.OnText = "On";
             // 
             // IOControl
             // 
@@ -147,16 +167,17 @@
             this.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.Appearance.Options.UseBackColor = true;
             this.Appearance.Options.UseForeColor = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupControl1);
             this.Name = "IOControl";
-            this.Size = new System.Drawing.Size(572, 657);
+            this.Size = new System.Drawing.Size(572, 704);
             ((System.ComponentModel.ISupportInitialize)(this.customGrid1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bind입력신호)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bind입력신호)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -171,5 +192,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn col번호;
         private DevExpress.XtraGrid.Columns.GridColumn col명칭;
         private DevExpress.XtraGrid.Columns.GridColumn col여부;
+        private DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch repositoryItemToggleSwitch1;
     }
 }

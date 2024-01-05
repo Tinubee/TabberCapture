@@ -59,12 +59,11 @@ namespace TabberCapture
         private void Init()
         {
             this.SetLocalization();
-            //this.e변수설정.Init();
             //this.e장치설정.Init();
             this.e환경설정.Init();
             this.e결과뷰어.Init();
             this.e상태뷰어.Init();
-            this.e입력신호.Init();
+            //this.e입력신호.Init();
 
             this.TabFormControl.AllowMoveTabs = false;
             this.TabFormControl.AllowMoveTabsToOuterForm = false;

@@ -56,6 +56,8 @@
             this.col설명1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col켜짐 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.BindLocalization = new System.Windows.Forms.BindingSource(this.components);
+            this.repositoryItemToggleSwitch1 = new DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch();
+            this.repositoryItemToggleSwitch2 = new DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
@@ -69,6 +71,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.Bind조명설정)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindLocalization)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch2)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -112,6 +116,8 @@
             this.GridControl1.Location = new System.Drawing.Point(2, 27);
             this.GridControl1.MainView = this.GridView1;
             this.GridControl1.Name = "GridControl1";
+            this.GridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemToggleSwitch2});
             this.GridControl1.Size = new System.Drawing.Size(939, 411);
             this.GridControl1.TabIndex = 0;
             this.GridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -252,8 +258,10 @@
             // 
             this.col상태.AppearanceHeader.Options.UseTextOptions = true;
             this.col상태.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.col상태.ColumnEdit = this.repositoryItemToggleSwitch2;
             this.col상태.FieldName = "상태";
             this.col상태.Name = "col상태";
+            this.col상태.OptionsColumn.ReadOnly = true;
             this.col상태.Visible = true;
             this.col상태.VisibleIndex = 4;
             // 
@@ -276,6 +284,8 @@
             this.GridControl2.Location = new System.Drawing.Point(2, 27);
             this.GridControl2.MainView = this.GridView2;
             this.GridControl2.Name = "GridControl2";
+            this.GridControl2.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemToggleSwitch1});
             this.GridControl2.Size = new System.Drawing.Size(939, 329);
             this.GridControl2.TabIndex = 1;
             this.GridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -358,10 +368,25 @@
             // 
             this.col켜짐.AppearanceHeader.Options.UseTextOptions = true;
             this.col켜짐.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.col켜짐.ColumnEdit = this.repositoryItemToggleSwitch1;
             this.col켜짐.FieldName = "켜짐";
             this.col켜짐.Name = "col켜짐";
             this.col켜짐.Visible = true;
             this.col켜짐.VisibleIndex = 4;
+            // 
+            // repositoryItemToggleSwitch1
+            // 
+            this.repositoryItemToggleSwitch1.AutoHeight = false;
+            this.repositoryItemToggleSwitch1.Name = "repositoryItemToggleSwitch1";
+            this.repositoryItemToggleSwitch1.OffText = "Off";
+            this.repositoryItemToggleSwitch1.OnText = "On";
+            // 
+            // repositoryItemToggleSwitch2
+            // 
+            this.repositoryItemToggleSwitch2.AutoHeight = false;
+            this.repositoryItemToggleSwitch2.Name = "repositoryItemToggleSwitch2";
+            this.repositoryItemToggleSwitch2.OffText = "Off";
+            this.repositoryItemToggleSwitch2.OnText = "On";
             // 
             // CamSettings
             // 
@@ -391,6 +416,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.Bind조명설정)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindLocalization)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -423,5 +450,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn col설명1;
         private DevExpress.XtraGrid.Columns.GridColumn col켜짐;
         private System.Windows.Forms.BindingSource BindLocalization;
+        private DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch repositoryItemToggleSwitch2;
+        private DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch repositoryItemToggleSwitch1;
     }
 }

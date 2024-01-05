@@ -29,7 +29,7 @@ namespace TabberCapture
 
         public static class 장치상태
         {
-            public static Boolean 정상여부 { get { return true; } }
+            public static Boolean 정상여부 { get { return 신호제어.정상여부; } }
             public static Boolean 카메라1 { get { return 그랩제어?.카메라1?.상태 ?? false; } }
             public static Boolean 카메라2 { get { return 그랩제어?.카메라2?.상태 ?? false; } }
             public static Boolean 카메라3 { get { return 그랩제어?.카메라3?.상태 ?? false; } }

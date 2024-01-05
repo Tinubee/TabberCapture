@@ -39,6 +39,8 @@ namespace TabberCapture.UI.Controls
             b카메라3번수동촬영.Click += B카메라3번수동촬영_Click;
             b카메라4번수동촬영.Click += B카메라4번수동촬영_Click;
             b카메라5번수동촬영.Click += B카메라5번수동촬영_Click;
+
+            e입력신호.Init();
         }
 
        
