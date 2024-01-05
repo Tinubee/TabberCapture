@@ -17,7 +17,7 @@ namespace TabberCapture
     public partial class MainForm : TabForm
     {
         private LocalizationMain 번역 = new LocalizationMain();
-        private WaitForm WaitForm;
+        private UI.Forms.WaitForm WaitForm;
         public MainForm()
         {
             InitializeComponent();
@@ -28,7 +28,7 @@ namespace TabberCapture
         }
         private void ShowWaitForm()
         {
-            WaitForm = new WaitForm() { ShowOnTopMode = ShowFormOnTopMode.AboveAll };
+            WaitForm = new UI.Forms.WaitForm() { ShowOnTopMode = ShowFormOnTopMode.AboveAll };
             WaitForm.Show(this);
         }
         private void HideWaitForm()
