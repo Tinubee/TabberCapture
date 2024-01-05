@@ -139,6 +139,7 @@ namespace TabberCapture.Schemas
             }
             catch (Exception ex)
             {
+                Debug.WriteLine(ex);
                 //Global.오류로그(로그영역, 구분, ex.Message, true);
                 return false;
             }

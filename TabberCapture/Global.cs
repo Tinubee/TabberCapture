@@ -64,6 +64,7 @@ namespace TabberCapture
             }
             catch (Exception ex)
             {
+                Debug.WriteLine(ex);
                 //Utils.DebugException(ex, 3);
                 //Global.오류로그(로그영역, "초기화 오류", "시스템 초기화에 실패하였습니다.\n" + ex.Message, true);
             }
@@ -93,6 +94,7 @@ namespace TabberCapture
             }
             catch (Exception ex)
             {
+                Debug.WriteLine(ex);
                 //return Utils.ErrorMsg("프로그램 종료 중 오류가 발생하였습니다.\n" + ex.Message);
                 return false;
             }

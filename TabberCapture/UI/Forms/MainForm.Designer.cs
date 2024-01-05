@@ -127,10 +127,9 @@
             this.e결과뷰어.Appearance.Options.UseBackColor = true;
             this.e결과뷰어.Appearance.Options.UseForeColor = true;
             this.e결과뷰어.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.e결과뷰어.Location = new System.Drawing.Point(0, 105);
-            this.e결과뷰어.Margin = new System.Windows.Forms.Padding(0);
+            this.e결과뷰어.Location = new System.Drawing.Point(0, 117);
             this.e결과뷰어.Name = "e결과뷰어";
-            this.e결과뷰어.Size = new System.Drawing.Size(1920, 965);
+            this.e결과뷰어.Size = new System.Drawing.Size(1920, 953);
             this.e결과뷰어.TabIndex = 1;
             // 
             // e상태뷰어
@@ -142,7 +141,7 @@
             this.e상태뷰어.Dock = System.Windows.Forms.DockStyle.Top;
             this.e상태뷰어.Location = new System.Drawing.Point(0, 0);
             this.e상태뷰어.Name = "e상태뷰어";
-            this.e상태뷰어.Size = new System.Drawing.Size(1920, 105);
+            this.e상태뷰어.Size = new System.Drawing.Size(1920, 117);
             this.e상태뷰어.TabIndex = 0;
             // 
             // p환경설정

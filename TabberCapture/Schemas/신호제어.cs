@@ -13,8 +13,8 @@ namespace TabberCapture.Schemas
     public class 신호제어
     {
         // 이벤트
-        public event Global.BaseEvent 동작상태알림;
-        public event Global.BaseEvent 검사시작알림;
+        //public event Global.BaseEvent 동작상태알림;
+        //public event Global.BaseEvent 검사시작알림;
         public event Global.BaseEvent 입출변경알림;
 
         #region IO 관련 변수 및 Propertys

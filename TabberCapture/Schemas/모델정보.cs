@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -78,6 +79,7 @@ namespace TabberCapture.Schemas
             }
             catch (Exception ex)
             {
+                Debug.WriteLine(ex);
                 //Global.오류로그(로그영역.GetString(), "자료로드", ex.Message, false);
             }
 

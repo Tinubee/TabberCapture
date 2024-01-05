@@ -22,7 +22,7 @@ namespace TabberCapture
         {
             InitializeComponent();
             this.ShowWaitForm();
-            this.타이틀.Caption = $"IVM: {환경설정.프로젝트번호}";
+            this.타이틀.Caption = $"KHM: {환경설정.프로젝트번호}";
             this.Shown += MainFormShown;
             this.FormClosing += MainFormClosing;
         }
