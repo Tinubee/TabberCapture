@@ -7,11 +7,9 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Threading;
 using Basler.Pylon;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Windows.Forms;
 using MvUtils;
 
 namespace TabberCapture.Schemas
@@ -119,6 +117,10 @@ namespace TabberCapture.Schemas
        
         public void ImageSave(Mat 이미지, 카메라구분 카메라, Int32 검사번호)
         {
+            //이미지저장 파일명 예시
+            //1_000001_1_231215_1_091010
+            //1: 라인번호 , 000001 : 카운트 s/n, 1 : CamNumber , 231215 : 날짜, 1 : Capture넘버 , 091010 : 시분초
+
             //if (!Global.환경설정.사진저장OK && !Global.환경설정.사진저장NG) return;
             List<String> paths = new List<String> { Global.환경설정.사진저장, Utils.FormatDate(DateTime.Now, "{0:yyyy-MM-dd}"), 카메라.ToString() };
             String name = $"{검사번호.ToString("d4")}_{Utils.FormatDate(DateTime.Now, "{0:HHmmss}")}.png";//_{결과.ToString()}

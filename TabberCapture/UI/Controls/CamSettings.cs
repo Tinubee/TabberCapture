@@ -1,15 +1,7 @@
 ﻿using DevExpress.XtraEditors;
-using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Views.Grid;
+using MvUtils;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using TabberCapture.Schemas;
 
 namespace TabberCapture.UI.Controls
@@ -51,11 +43,12 @@ namespace TabberCapture.UI.Controls
 
         private void b저장_Click(object sender, EventArgs e)
         {
-            if (!MvUtils.Utils.Confirm(번역.저장확인, Localization.확인.GetString())) return;
+            if (!Utils.Confirm(번역.저장확인, Localization.확인.GetString())) return;
             this.GridControl1.EmbeddedNavigator.Buttons.DoClick(this.GridControl1.EmbeddedNavigator.Buttons.EndEdit);
             this.GridControl2.EmbeddedNavigator.Buttons.DoClick(this.GridControl2.EmbeddedNavigator.Buttons.EndEdit);
             Global.그랩제어?.Save();
             Global.조명제어?.Save();
+            Utils.SaveOK();
             //Global.정보로그("카메라 설정", "설정저장", "저장되었습니다.", this.FindForm());
         }
 

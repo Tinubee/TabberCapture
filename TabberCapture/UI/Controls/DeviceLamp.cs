@@ -1,7 +1,6 @@
 ﻿using DevExpress.XtraEditors;
 using MvUtils;
 using System;
-using System.Diagnostics;
 
 namespace TabberCapture.UI.Controls
 {

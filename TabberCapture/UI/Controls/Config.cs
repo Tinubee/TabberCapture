@@ -59,7 +59,7 @@ namespace TabberCapture.UI.Controls
             this.Bind환경설정.EndEdit();
             if (!Utils.Confirm(번역.저장확인, Localization.확인.GetString())) return;
             Global.환경설정.Save();
-            //Global.정보로그(환경설정.로그영역.GetString(), 번역.설정저장, 번역.저장완료, true);
+            Utils.SaveOK();
         }
 
         private class LocalizationConfig
